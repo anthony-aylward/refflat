@@ -80,7 +80,7 @@ plot_gene <- function(
     gene_data <- data.frame(
       geneName = gene_data[1, "geneName"],
       chrom =  gene_data[1, "chrom"],
-      strand = gene_data[1, "strand"]
+      strand = gene_data[1, "strand"],
       cdsStart = min(gene_data[["cdsStart"]]),
       cdsEnd = max(gene_data[["cdsEnd"]]),
     )
