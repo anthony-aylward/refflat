@@ -89,7 +89,7 @@ plot_gene <- function(
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   plot(
-    1e-6 * c(
+    c(
       gene_center[[1]] - gene_length[[1]],
       gene_center[[1]] + gene_length[[1]]
     ),
@@ -107,9 +107,9 @@ plot_gene <- function(
     arrowhead_code = 1
   }
   arrows(
-    1e-6 * gene_data[1, "cdsStart"],
+    gene_data[1, "cdsStart"],
     y_coord + 0.5,
-    x1 = 1e-6 * gene_data[1, "cdsEnd"],
+    x1 = gene_data[1, "cdsEnd"],
     code = arrowhead_code,
     angle = angle,
     lwd = lwd
