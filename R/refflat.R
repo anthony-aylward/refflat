@@ -132,3 +132,34 @@ slice_refflat <- function(chrom, start, end, refflat = refflat_data) {
     ),
   ]
 }
+
+#' Flatten refFlat data
+#'
+#' Flatten refFlat data
+#'
+#' @param chrom character. The chromosome of the slice.
+#' @param start integer. The start position of the slice.
+#' @param end integer. The end position of the slice.
+#' @param refflat data frame. The refflat dataset.
+#' @return A data frame representing the requested slice of the refflat data.
+#' @export
+flatten_refflat <- function(refflat) {
+  as.data.frame(
+    do.call(
+      "rbind",
+      lapply(
+        unique(refflat[["geneName"]]),
+        function(gene_name) {
+          gene_data <- refflat[refflat[["geneName"]] == name,]
+          list(
+            geneName = gene_data[1, "geneName"],
+            chrom = gene_data[1, "chrom"],
+            strand = gene_data[1, "strand"],
+            cdsStart = min(gene_data[["cdsStart"]]),
+            cdsEnd = max(gene_data[["cdsEnd"]])
+          )
+        }
+      )
+    )
+  )
+}
