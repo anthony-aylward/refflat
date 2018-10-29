@@ -59,8 +59,8 @@ slice_refflat <- function(chrom, start, end, refflat = refflat_data) {
   refflat[
     (
       refflat[["chrom"]] == chrom 
-      & refflat[["cdsStart"]] < end 
-      & refflat[["cdsEnd"]] > start
+      & refflat[["txStart"]] < end 
+      & refflat[["txEnd"]] > start
     ),
   ]
 }
@@ -87,8 +87,8 @@ flatten_refflat <- function(refflat) {
             geneName = gene_data[1, "geneName"],
             chrom = gene_data[1, "chrom"],
             strand = gene_data[1, "strand"],
-            cdsStart = min(gene_data[["cdsStart"]]),
-            cdsEnd = max(gene_data[["cdsEnd"]])
+            txStart = min(gene_data[["txStart"]]),
+            txEnd = max(gene_data[["txEnd"]])
           )
         }
       )
@@ -116,23 +116,22 @@ draw_gene <- function(
   angle = 15,
   lwd = 2
 ) {
-  gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   if (gene_data[["strand"]] == "+") {
     arrowhead_code = 2
   } else if (gene_data[["strand"]] == "-") {
     arrowhead_code = 1
   }
   arrows(
-    gene_data[["cdsStart"]],
+    gene_data[["txStart"]],
     y - strheight(gene_data[["geneName"]]) / 2,
-    x1 = gene_data[["cdsEnd"]],
+    x1 = gene_data[["txEnd"]],
     length = arrowhead_length,
     angle = angle,
     code = arrowhead_code,
     lwd = lwd
   )
   text(
-    gene_center,
+    (gene_data[["txStart"]] + gene_data[["txEnd"]]) / 2,
     y - strheight(gene_data[["geneName"]]) / 2,
     labels = gene_data[["geneName"]],
     font = 3,
@@ -167,8 +166,8 @@ plot_gene <- function(
     refflat[["geneName"]] == name | refflat[["name"]] == name,
   ]
   if (flatten) gene_data <- flatten_refflat(gene_data)
-  gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
-  gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
+  gene_length <- gene_data[["txEnd"]] - gene_data[["txStart"]]
+  gene_center <- (gene_data[["txStart"]] + gene_data[["txEnd"]]) / 2
   plot(
     c(gene_center - gene_length, gene_center + gene_length),
     c(y_coord, y_coord + 1),
@@ -188,7 +187,6 @@ plot_gene <- function(
   )
 }
 
-
 #' Determine levels
 #'
 #' Determine y-axis levels for each gene, in case any overlap one another
@@ -197,14 +195,14 @@ plot_gene <- function(
 #' @return data frame. refflat data with a level column added.
 #' @export
 determine_levels <- function(refflat) {
-  refflat <- refflat[order(refflat[["cdsStart"]]),]
+  refflat <- refflat[order(refflat[["txStart"]]),]
   levels <- 1
-  ends <- c(refflat[1, "cdsEnd"])
+  ends <- c(refflat[1, "txEnd"])
   level <- 1
   for (row in 2:nrow(refflat)) {
     broke_loop <- FALSE
     for (l in 1:max(levels)) {
-      if (ends[level] < refflat[row, "cdsStart"]) {
+      if (ends[level] < refflat[row, "txStart"]) {
         level <- l
         broke_loop <- TRUE
         break
@@ -212,11 +210,11 @@ determine_levels <- function(refflat) {
     }
     if (!broke_loop) {
       level <- max(levels) + 1
-      ends <- c(ends, refflat[row, "cdsEnd"])
+      ends <- c(ends, refflat[row, "txEnd"])
     }
     levels <- c(levels, level)
-    if (ends[level] < refflat[row, "cdsEnd"]) {
-      ends[level] <- refflat[row, "cdsEnd"]
+    if (ends[level] < refflat[row, "txEnd"]) {
+      ends[level] <- refflat[row, "txEnd"]
     }
   }
   refflat[["level"]] <- levels
