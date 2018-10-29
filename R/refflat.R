@@ -194,7 +194,7 @@ plot_gene <- function(
 #' @param refflat data frame. The input refflat data.
 #' @return data frame. refflat data with a level column added.
 #' @export
-determine_levels <- function(refflat) {
+determine_levels <- function(refflat, buffer = 0) {
   refflat <- refflat[order(refflat[["txStart"]]),]
   levels <- 1
   ends <- c(refflat[1, "txEnd"])
@@ -202,7 +202,7 @@ determine_levels <- function(refflat) {
   for (row in 2:nrow(refflat)) {
     broke_loop <- FALSE
     for (l in 1:max(levels)) {
-      if (ends[level] < refflat[row, "txStart"]) {
+      if (ends[level] + buffer < refflat[row, "txStart"]) {
         level <- l
         broke_loop <- TRUE
         break
@@ -244,11 +244,12 @@ plot_refflat <- function(
   flatten = TRUE,
   arrowhead_length = 0.125,
   angle = 15,
-  lwd = 2
+  lwd = 2,
+  buffer = 0
 ) {
   slice <- slice_refflat(chrom, start, end)
   if (flatten) slice <- flatten_refflat(slice)
-  slice <- determine_levels(slice)
+  slice <- determine_levels(slice, buffer = buffer)
   max_level <- max(slice[["level"]])
   y_levels = 1:max_level / (max_level + 1)
   plot(
