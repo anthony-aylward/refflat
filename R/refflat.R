@@ -155,8 +155,8 @@ flatten_refflat <- function(refflat) {
             geneName = gene_data[1, "geneName"],
             chrom = gene_data[1, "chrom"],
             strand = gene_data[1, "strand"],
-            cdsStart = min(gene_data[["cdsStart"]]),
-            cdsEnd = max(gene_data[["cdsEnd"]])
+            cdsStart = min(gene_data[["cdsStart"]])[[1]],
+            cdsEnd = max(gene_data[["cdsEnd"]])[[1]]
           )
         }
       )
