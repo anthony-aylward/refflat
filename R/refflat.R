@@ -238,7 +238,7 @@ determine_levels <- function(refflat) {
 #'   arrow head.
 #' @param lwd numeric. Weight of lines.
 #' @export
-plot_gene <- function(
+plot_refflat <- function(
   start,
   end,
   refflat = refflat_data,
