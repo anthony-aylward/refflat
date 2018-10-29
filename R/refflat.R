@@ -66,8 +66,8 @@ plot_gene <- function(
   y_coord = 0,
   flatten = FALSE
 ) {
-  gene_data <- refflat[,
-    refflat[["geneName"]] == name | refflat[["name"]] == name
+  gene_data <- refflat[
+    refflat[["geneName"]] == name | refflat[["name"]] == name,
   ]
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
