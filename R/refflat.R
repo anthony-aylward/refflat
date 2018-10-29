@@ -124,7 +124,7 @@ draw_gene <- function(
   }
   arrows(
     gene_data[["cdsStart"]],
-    y,
+    y - strheight(gene_data[["geneName"]]) / 2,
     x1 = gene_data[["cdsEnd"]],
     length = arrowhead_length,
     angle = angle,
@@ -133,7 +133,7 @@ draw_gene <- function(
   )
   text(
     gene_center,
-    y,
+    y - strheight(gene_data[["geneName"]]) / 2,
     labels = gene_data[["geneName"]],
     font = 3,
     pos = 3
