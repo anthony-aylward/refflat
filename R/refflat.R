@@ -45,14 +45,6 @@ fetch_refflat_data <- function(tmpdir = tempdir(), method = "auto") {
   refflat_data
 }
 
-directional_gene_coordinates <- function(start, end, strand = c("+", "-")) {
-  if (strand == "+") {
-    c(start, end)
-  } else if (strand == "-") {
-    c(end, start)
-  }
-}
-
 #' Plot a gene
 #'
 #' Plot a gene
