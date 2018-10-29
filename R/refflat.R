@@ -183,19 +183,11 @@ plot_gene <- function(
   title(
     xlab = paste("Chromosome", sub("chr", "", gene_data[1, "chrom"]))
   )
-  if (gene_data[1, "strand"] == "+") {
-    arrowhead_code = 2
-  } else if (gene_data[1, "strand"] == "-") {
-    arrowhead_code = 1
-  }
-  arrows(
-    gene_data[1, "cdsStart"],
+  draw_gene(
+    gene_data,
     y_coord + 0.5,
-    x1 = gene_data[1, "cdsEnd"],
-    length = arrowhead_length,
+    arrowhead_length = arrowhead_length,
     angle = angle,
-    code = arrowhead_code,
     lwd = lwd
   )
-  text(gene_center[[1]], y_coord + 0.5, labels = name, font = 3, pos = 3)
 }
