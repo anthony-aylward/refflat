@@ -239,6 +239,7 @@ determine_levels <- function(refflat) {
 #' @param lwd numeric. Weight of lines.
 #' @export
 plot_refflat <- function(
+  chrom,
   start,
   end,
   refflat = refflat_data,
