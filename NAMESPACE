@@ -2,3 +2,4 @@
 
 export(fetch_refflat_data)
 export(plot_gene)
+export(slice_refflat)

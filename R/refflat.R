@@ -121,6 +121,8 @@ plot_gene <- function(
 #' @param start integer. The start position of the slice.
 #' @param end integer. The end position of the slice.
 #' @param refflat data frame. The refflat dataset.
+#' @return A data frame representing the requested slice of the refflat data.
+#' @export
 slice_refflat <- function(chrom, start, end, refflat = refflat_data) {
   refflat[
     (
