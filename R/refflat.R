@@ -255,7 +255,7 @@ plot_refflat <- function(
   y_levels = 1:max_level / (max_level + 1)
   plot(
     c(start, end),
-    c(y_coord, y_coord + 1),
+    c(0, 1),
     col = "white",
     ann = FALSE,
     yaxt = "n"
