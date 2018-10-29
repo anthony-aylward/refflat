@@ -76,9 +76,9 @@ plot_gene <- function(
     c(y_coord, y_coord + 1),
     col = "white"
   )
-  if (strand == "+") {
+  if (gene_data[["strand"]] == "+") {
     arrows(gene_data[1, "cdsStart"], 0.5, x1 = gene_data[1, "cdsEnd"], lwd = 4)
-  } else if (strand == "-") {
+  } else if (gene_data[["strand"]] == "-") {
     arrows(gene_data[1, "cdsEnd"], 0.5, gene_data[1, "cdsStart"], lwd = 4)
   }
 }
