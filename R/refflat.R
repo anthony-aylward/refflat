@@ -256,10 +256,13 @@ plot_refflat <- function(
     c(0, 1),
     col = "white",
     ann = FALSE,
-    yaxt = "n"
+    yaxt = "n",
+    xaxt = "n"
   )
-  title(
-    xlab = paste("Chromosome", sub("chr", "", chrom))
+  axis(
+    1,
+    at = c(start, (start + end) / 2, end)
+    labels = c(start / 1e6, paste("Chromosome", sub("chr", "", chrom), "(Mb)"), end / 1e6),
   )
   for (row in 1:nrow(slice)) {
     draw_gene(
