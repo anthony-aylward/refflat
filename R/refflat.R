@@ -150,13 +150,13 @@ flatten_refflat <- function(refflat) {
       lapply(
         unique(refflat[["geneName"]]),
         function(gene_name) {
-          gene_data <- refflat[refflat[["geneName"]] == name,]
+          gene_data <- refflat[refflat[["geneName"]] == gene_name,]
           list(
             geneName = gene_data[1, "geneName"],
             chrom = gene_data[1, "chrom"],
             strand = gene_data[1, "strand"],
-            cdsStart = min(gene_data[["cdsStart"]])[[1]],
-            cdsEnd = max(gene_data[["cdsEnd"]])[[1]]
+            cdsStart = min(gene_data[["cdsStart"]]),
+            cdsEnd = max(gene_data[["cdsEnd"]])
           )
         }
       )
