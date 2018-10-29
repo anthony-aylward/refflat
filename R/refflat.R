@@ -265,7 +265,7 @@ plot_refflat <- function(
   )
   for (row in 1:nrow(slice)) {
     draw_gene(
-      gene_data,
+      slice[row,],
       y_levels[slice[row, "level"]],
       arrowhead_length = arrowhead_length,
       angle = angle,
