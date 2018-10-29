@@ -73,8 +73,8 @@ plot_gene <- function(
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   plot(
     rep(c(gene_center - gene_length, gene_center + gene_length), 2),
-    rep(c(y_coord, y_coord + 1, 2),
-    col="white"
+    rep(c(y_coord, y_coord + 1), 2),
+    col = "white"
   )
   if (strand == "+") {
     arrows(gene_data[1, "cdsStart"], 0.5, x1 = gene_data[1, "cdsEnd"], lwd = 4)
