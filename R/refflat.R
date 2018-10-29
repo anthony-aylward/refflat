@@ -116,7 +116,6 @@ draw_gene <- function(
   angle = 15,
   lwd = 2
 ) {
-  gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   if (gene_data[["strand"]] == "+") {
     arrowhead_code = 2
