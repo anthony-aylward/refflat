@@ -96,5 +96,5 @@ plot_gene <- function(
     angle = angle,
     lwd = lwd
   )
-  text(gene_center, y_coord, labels = name, font = 3, pos = 3)
+  text(gene_center[[1]], y_coord + 0.5, labels = name, font = 3, pos = 3)
 }
