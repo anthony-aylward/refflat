@@ -42,7 +42,6 @@ fetch_refflat_data <- function(tmpdir = tempdir(), method = "auto") {
     )
   )
   file.remove(temp_file_name)
-  rownames(refflat_data) <- refflat_data[["geneName"]]
   refflat_data
 }
 
