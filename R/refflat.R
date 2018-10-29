@@ -72,8 +72,8 @@ plot_gene <- function(
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   plot(
-    rep(c(gene_center - gene_length, gene_center + gene_length), 2),
-    rep(c(y_coord, y_coord + 1), 2),
+    c(gene_center - gene_length, gene_center + gene_length),
+    c(y_coord, y_coord + 1),
     col = "white"
   )
   if (strand == "+") {
