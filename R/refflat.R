@@ -69,31 +69,40 @@ plot_gene <- function(
   name,
   refflat = refflat_data,
   y_coord = 0,
-  flatten = FALSE,
+  flatten = TRUE,
   angle = 15,
   lwd = 2
 ) {
   gene_data <- refflat[
     refflat[["geneName"]] == name | refflat[["name"]] == name,
   ]
+  if (flatten) {
+    gene_data <- as.data.frame(
+
+    )
+  }
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   plot(
-    c(gene_center[[1]] - gene_length[[1]], gene_center[[1]] + gene_length[[1]]),
+    1e-6 * c(
+      gene_center[[1]] - gene_length[[1]],
+      gene_center[[1]] + gene_length[[1]]
+    ),
     c(y_coord, y_coord + 1),
     col = "white",
     ann = FALSE,
     yaxt = "n"
   )
+  title(xlab = paste("Chromosome", gene_data[1, "chrom"], "(Mb)"))
   if (gene_data[1, "strand"] == "+") {
     arrowhead_code = 2
   } else if (gene_data[1, "strand"] == "-") {
     arrowhead_code = 1
   }
   arrows(
-    gene_data[1, "cdsStart"],
+    1e-6 * gene_data[1, "cdsStart"],
     y_coord + 0.5,
-    x1 = gene_data[1, "cdsEnd"],
+    x1 = 1e-6 * gene_data[1, "cdsEnd"],
     code = arrowhead_code,
     angle = angle,
     lwd = lwd
