@@ -41,5 +41,17 @@ fetch_refflat_data <- function(tmpdir = tempdir(), method = "auto") {
     )
   )
   file.remove(temp_file_name)
+  rownames(refflat_data) <- refflat_data[["geneName"]]
   refflat_data
+}
+
+#' Plot a gene
+#'
+#' Plot a gene
+#'
+#' @param name character. The name of the gene to plot.
+#' @param refflat data frame. The refflat dataset.
+plot_gene <- function(name, refflat = refflat_data) {
+  gene <- refflat[refflat]
+  lines()
 }
