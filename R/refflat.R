@@ -83,7 +83,7 @@ flatten_refflat <- function(refflat) {
         unique(refflat[["geneName"]]),
         function(gene_name) {
           gene_data <- refflat[refflat[["geneName"]] == gene_name,]
-          list(
+          data.frame(
             geneName = gene_data[1, "geneName"],
             chrom = gene_data[1, "chrom"],
             strand = gene_data[1, "strand"],
@@ -172,10 +172,7 @@ plot_gene <- function(
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   plot(
-    c(
-      gene_center[[1]] - gene_length[[1]],
-      gene_center[[1]] + gene_length[[1]]
-    ),
+    c(gene_center - gene_length, gene_center + gene_length),
     c(y_coord, y_coord + 1),
     col = "white",
     ann = FALSE,
