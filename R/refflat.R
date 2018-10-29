@@ -81,7 +81,9 @@ plot_gene <- function(
   plot(
     c(gene_center[[1]] - gene_length[[1]], gene_center[[1]] + gene_length[[1]]),
     c(y_coord, y_coord + 1),
-    col = "white"
+    col = "white",
+    ann = FALSE,
+    yaxt = "n"
   )
   if (gene_data[1, "strand"] == "+") {
     arrowhead_code = 2
