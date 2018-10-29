@@ -261,8 +261,8 @@ plot_refflat <- function(
   )
   axis(
     1,
-    at = c(start, (start + end) / 2, end),
-    labels = c(start / 1e6, paste("Chromosome", sub("chr", "", chrom), "(Mb)"), end / 1e6)
+    at = c(signif(start, 3), (start + end) / 2, signif(end, 3)),
+    labels = c(signif(start, 3) / 1e6, paste("Chromosome", sub("chr", "", chrom), "(Mb)"), signif(end, 3) / 1e6)
   )
   for (row in 1:nrow(slice)) {
     draw_gene(
