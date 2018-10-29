@@ -187,3 +187,84 @@ plot_gene <- function(
     lwd = lwd
   )
 }
+
+
+#' Determine levels
+#'
+#' Determine y-axis levels for each gene, in case any overlap one another
+#'
+#' @param refflat data frame. The input refflat data.
+#' @return data frame. refflat data with a level column added.
+#' @export
+determine_levels <- function(refflat) {
+  refflat <- refflat[order(refflat[["cdsStart"]]),]
+  levels <- 1
+  ends <- c(refflat[1, "cdsEnd"])
+  level <- 1
+  for (row in 2:nrow(refflat)) {
+    broke_loop <- FALSE
+    for (l in 1:max(levels)) {
+      if (ends[level] < refflat[row, "cdsStart"]) {
+        level <- l
+        broke_loop <- TRUE
+        break
+      }
+    }
+    if (!broke_loop) {
+      level <- max(levels) + 1
+      ends <- c(ends, refflat[row, "cdsEnd"])
+    }
+    levels <- c(levels, level)
+    if (ends[level] < refflat[row, "cdsEnd"]) {
+      ends[level] <- refflat[row, "cdsEnd"]
+    }
+  }
+  refflat[["level"]] <- levels
+  refflat
+}
+
+#' Plot refflat
+#'
+#' Plot refflat data in an interval
+#'
+#' @param chrom integer. The chromosome of the plotting interval.
+#' @param start integer. The start of the plotting interval.
+#' @param end integer. The end of the plotting interval.
+#' @param refflat data frame. The refflat dataset.
+#' @param flatten logical. Flatten genes with multiple transcripts.
+#' @param arrowhead_length numeric. Length of the edges of the arrow head (in
+#'   inches).
+#' @param angle numeric. Angle from the shaft of the arrow to the edge of the
+#'   arrow head.
+#' @param lwd numeric. Weight of lines.
+#' @export
+plot_gene <- function(
+  start,
+  end,
+  refflat = refflat_data,
+  flatten = TRUE,
+  arrowhead_length = 0.125,
+  angle = 15,
+  lwd = 2
+) {
+  slice <- slice_refflat(chrom, start, end)
+  if (flatten) slice <- flatten_refflat(slice)
+  slice <- determine_levels(slice)
+  plot(
+    c(start, end),
+    c(y_coord, y_coord + 1),
+    col = "white",
+    ann = FALSE,
+    yaxt = "n"
+  )
+  title(
+    xlab = paste("Chromosome", sub("chr", "", gene_data[1, "chrom"]))
+  )
+  draw_gene(
+    gene_data,
+    y_coord + 0.5,
+    arrowhead_length = arrowhead_length,
+    angle = angle,
+    lwd = lwd
+  )
+}

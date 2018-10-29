@@ -4,17 +4,38 @@
 \alias{plot_gene}
 \title{Plot a gene}
 \usage{
-plot_gene(name, refflat = refflat_data, y_coord = 0, flatten = TRUE,
+plot_gene(start, end, refflat = refflat_data, flatten = TRUE,
+  arrowhead_length = 0.125, angle = 15, lwd = 2)
+
+plot_gene(start, end, refflat = refflat_data, flatten = TRUE,
   arrowhead_length = 0.125, angle = 15, lwd = 2)
 }
 \arguments{
-\item{name}{character. The name of the gene to plot.}
+\item{start}{integer. The start of the plotting interval.}
+
+\item{end}{integer. The end of the plotting interval.}
 
 \item{refflat}{data frame. The refflat dataset.}
 
+\item{flatten}{logical. Flatten multiple transcripts if present.}
+
+\item{arrowhead_length}{numeric. Length of the edges of the arrow head (in
+inches).}
+
+\item{angle}{numeric. Angle from the shaft of the arrow to the edge of the
+arrow head.}
+
+\item{lwd}{numeric. Weight of lines.}
+
+\item{name}{character. The name of the gene to plot.}
+
 \item{y_coord}{numeric. Y-coordinate for the arrow.}
 
-\item{flatten}{logical. Flatten multiple transcripts if present.}
+\item{chrom}{integer. The chromosome of the plotting interval.}
+
+\item{refflat}{data frame. The refflat dataset.}
+
+\item{flatten}{logical. Flatten genes with multiple transcripts.}
 
 \item{arrowhead_length}{numeric. Length of the edges of the arrow head (in
 inches).}
@@ -26,4 +47,6 @@ arrow head.}
 }
 \description{
 Plot a gene
+
+Plot refflat data in an interval
 }
