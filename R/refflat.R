@@ -112,3 +112,21 @@ plot_gene <- function(
   )
   text(gene_center[[1]], y_coord + 0.5, labels = name, font = 3, pos = 3)
 }
+
+#' Slice the refFlat dataset
+#'
+#' Slice the refFlat dataset
+#'
+#' @param chrom character. The chromosome of the slice.
+#' @param start integer. The start position of the slice.
+#' @param end integer. The end position of the slice.
+#' @param refflat data frame. The refflat dataset.
+slice_refflat <- function(chrom, start, end, refflat = refflat_data) {
+  refflat[
+    (
+      refflat[["chrom"]] == chrom 
+      & refflat[["cdsStart"]] < end 
+      & refflat[["cdsEnd"]] > start
+    ),
+  ]
+}
