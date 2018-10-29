@@ -261,7 +261,7 @@ plot_refflat <- function(
     yaxt = "n"
   )
   title(
-    xlab = paste("Chromosome", sub("chr", "", gene_data[1, "chrom"]))
+    xlab = paste("Chromosome", sub("chr", "", chrom))
   )
   for (row in 1:nrow(slice)) {
     draw_gene(
