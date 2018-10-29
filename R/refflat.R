@@ -98,7 +98,9 @@ plot_gene <- function(
     ann = FALSE,
     yaxt = "n"
   )
-  title(xlab = paste("Chromosome", gene_data[1, "chrom"], "(Mb)"))
+  title(
+    xlab = paste("Chromosome", sub("chr", "", gene_data[1, "chrom"]), "(Mb)")
+  )
   if (gene_data[1, "strand"] == "+") {
     arrowhead_code = 2
   } else if (gene_data[1, "strand"] == "-") {
