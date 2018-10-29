@@ -17,6 +17,7 @@
 #'   directory name (provided to tempfile()).
 #' @param method character. Method to be used for downloading the data file.
 #' @return A data frame containing the refFlat data (see also ?refflat_data)
+#' @export
 fetch_refflat_data <- function(tmpdir = tempdir(), method = "auto") {
   temp_file_name <- tempfile(tmpdir = tmpdir)
   download.file(
@@ -51,6 +52,7 @@ fetch_refflat_data <- function(tmpdir = tempdir(), method = "auto") {
 #'
 #' @param name character. The name of the gene to plot.
 #' @param refflat data frame. The refflat dataset.
+#' @export
 plot_gene <- function(name, refflat = refflat_data) {
   gene <- refflat[refflat]
   lines()
