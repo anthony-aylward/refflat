@@ -9,6 +9,14 @@
 
 # Functions ====================================================================
 
+#' Fetch refflat data
+#'
+#' Fetch refSeq refFlat data from the UCSC genome browser
+#'
+#' @param tmpdir character. A non-empty character vector giving the temporary
+#'   directory name (provided to tempfile()).
+#' @param method character. Method to be used for downloading the data file.
+#' @return A data frame containing the refFlat data (see also ?refflat_data)
 fetch_refflat_data <- function(tmpdir = tempdir(), method = "auto") {
   temp_file_name <- tempfile(tmpdir = tmpdir)
   download.file(
