@@ -72,14 +72,7 @@ plot_gene <- function(
     refflat[["geneName"]] == name | refflat[["name"]] == name,
   ]
   if (flatten) {
-    gene_data <- data.frame(
-      geneName = gene_data[1, "geneName"],
-      chrom = gene_data[1, "chrom"],
-      strand = gene_data[1, "strand"],
-      cdsStart = min(gene_data[["cdsStart"]]),
-      cdsEnd = max(gene_data[["cdsEnd"]]),
-      stringsAsFactors = FALSE
-    )
+    gene_data <- flatten_refflat(gene_data)
   }
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
