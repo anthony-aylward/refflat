@@ -70,7 +70,7 @@ plot_gene <- function(
   refflat = refflat_data,
   y_coord = 0,
   flatten = TRUE,
-  arrowhead_length = 0.125
+  arrowhead_length = 0.125,
   angle = 15,
   lwd = 2
 ) {
