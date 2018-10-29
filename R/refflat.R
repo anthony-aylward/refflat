@@ -59,12 +59,19 @@ directional_gene_coordinates <- function(start, end, strand = c("+", "-")) {
 #'
 #' @param name character. The name of the gene to plot.
 #' @param refflat data frame. The refflat dataset.
+#' @param y_coord numeric. Y-coordinate for the arrow.
+#' @param flatten logical. Flatten multiple transcripts if present.
+#' @param angle numeric. angle from the shaft of the arrow to the edge of the
+#'   arrow head
+#' @param lwd numeric. Weight of lines.
 #' @export
 plot_gene <- function(
   name,
   refflat = refflat_data,
   y_coord = 0,
-  flatten = FALSE
+  flatten = FALSE,
+  angle = 15,
+  lwd = 2
 ) {
   gene_data <- refflat[
     refflat[["geneName"]] == name | refflat[["name"]] == name,
@@ -76,9 +83,17 @@ plot_gene <- function(
     c(y_coord, y_coord + 1),
     col = "white"
   )
-  if (gene_data[["strand"]] == "+") {
-    arrows(gene_data[1, "cdsStart"], 0.5, x1 = gene_data[1, "cdsEnd"], lwd = 4)
-  } else if (gene_data[["strand"]] == "-") {
-    arrows(gene_data[1, "cdsEnd"], 0.5, gene_data[1, "cdsStart"], lwd = 4)
+  if (gene_data[1, "strand"] == "+") {
+    arrowhead_code = 2
+  } else if (gene_data[1, "strand"] == "-") {
+    arrowhead_code = 1
   }
+  arrows(
+    gene_data[1, "cdsStart"],
+    y_coord + 0.5,
+    x1 = gene_data[1, "cdsEnd"],
+    code = arrowhead_code,
+    angle = angle,
+    lwd = lwd
+  )
 }
