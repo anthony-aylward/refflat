@@ -4,12 +4,25 @@
 \alias{plot_gene}
 \title{Plot a gene}
 \usage{
-plot_gene(name, refflat = refflat_data)
+plot_gene(name, refflat = refflat_data, y_coord = 0, flatten = TRUE,
+  arrowhead_length = 0.125, angle = 15, lwd = 2)
 }
 \arguments{
 \item{name}{character. The name of the gene to plot.}
 
 \item{refflat}{data frame. The refflat dataset.}
+
+\item{y_coord}{numeric. Y-coordinate for the arrow.}
+
+\item{flatten}{logical. Flatten multiple transcripts if present.}
+
+\item{arrowhead_length}{numeric. Length of the edges of the arrow head (in
+inches).}
+
+\item{angle}{numeric. Angle from the shaft of the arrow to the edge of the
+arrow head.}
+
+\item{lwd}{numeric. Weight of lines.}
 }
 \description{
 Plot a gene

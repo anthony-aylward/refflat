@@ -61,8 +61,10 @@ directional_gene_coordinates <- function(start, end, strand = c("+", "-")) {
 #' @param refflat data frame. The refflat dataset.
 #' @param y_coord numeric. Y-coordinate for the arrow.
 #' @param flatten logical. Flatten multiple transcripts if present.
-#' @param angle numeric. angle from the shaft of the arrow to the edge of the
-#'   arrow head
+#' @param arrowhead_length numeric. Length of the edges of the arrow head (in
+#'   inches).
+#' @param angle numeric. Angle from the shaft of the arrow to the edge of the
+#'   arrow head.
 #' @param lwd numeric. Weight of lines.
 #' @export
 plot_gene <- function(
@@ -100,7 +102,7 @@ plot_gene <- function(
     yaxt = "n"
   )
   title(
-    xlab = paste("Chromosome", sub("chr", "", gene_data[1, "chrom"]), "(Mb)")
+    xlab = paste("Chromosome", sub("chr", "", gene_data[1, "chrom"]))
   )
   if (gene_data[1, "strand"] == "+") {
     arrowhead_code = 2
@@ -111,9 +113,9 @@ plot_gene <- function(
     gene_data[1, "cdsStart"],
     y_coord + 0.5,
     x1 = gene_data[1, "cdsEnd"],
-    code = arrowhead_code,
     length = arrowhead_length,
     angle = angle,
+    code = arrowhead_code,
     lwd = lwd
   )
   text(gene_center[[1]], y_coord + 0.5, labels = name, font = 3, pos = 3)
