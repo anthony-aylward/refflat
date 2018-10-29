@@ -124,7 +124,7 @@ draw_gene <- function(
   }
   arrows(
     gene_data[["cdsStart"]],
-    y_coord + 0.5,
+    y,
     x1 = gene_data[["cdsEnd"]],
     length = arrowhead_length,
     angle = angle,
@@ -133,7 +133,7 @@ draw_gene <- function(
   )
   text(
     gene_center,
-    y_coord + 0.5,
+    y,
     labels = gene_data[["geneName"]],
     font = 3,
     pos = 3
@@ -167,8 +167,6 @@ plot_gene <- function(
     refflat[["geneName"]] == name | refflat[["name"]] == name,
   ]
   if (flatten) gene_data <- flatten_refflat(gene_data)
-  print(gene_data)
-  print(str(gene_data))
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   plot(
