@@ -116,7 +116,6 @@ draw_gene <- function(
   angle = 15,
   lwd = 2
 ) {
-  print(gene_data)
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   if (gene_data[["strand"]] == "+") {
@@ -170,6 +169,7 @@ plot_gene <- function(
   ]
   if (flatten) gene_data <- flatten_refflat(gene_data)
   print(gene_data)
+  print(str(gene_data))
   gene_length <- gene_data[["cdsEnd"]] - gene_data[["cdsStart"]]
   gene_center <- (gene_data[["cdsStart"]] + gene_data[["cdsEnd"]]) / 2
   plot(
