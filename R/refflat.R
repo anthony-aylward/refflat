@@ -70,6 +70,7 @@ plot_gene <- function(
   refflat = refflat_data,
   y_coord = 0,
   flatten = TRUE,
+  arrowhead_length = 0.125
   angle = 15,
   lwd = 2
 ) {
@@ -111,6 +112,7 @@ plot_gene <- function(
     y_coord + 0.5,
     x1 = gene_data[1, "cdsEnd"],
     code = arrowhead_code,
+    length = arrowhead_length,
     angle = angle,
     lwd = lwd
   )
