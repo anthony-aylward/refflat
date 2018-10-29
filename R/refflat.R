@@ -250,6 +250,8 @@ plot_refflat <- function(
   slice <- slice_refflat(chrom, start, end)
   if (flatten) slice <- flatten_refflat(slice)
   slice <- determine_levels(slice)
+  max_level <- max(slice[["level"]])
+  y_levels = 1:max_level / (max_level + 1)
   plot(
     c(start, end),
     c(y_coord, y_coord + 1),
@@ -260,11 +262,13 @@ plot_refflat <- function(
   title(
     xlab = paste("Chromosome", sub("chr", "", gene_data[1, "chrom"]))
   )
-  draw_gene(
-    gene_data,
-    y_coord + 0.5,
-    arrowhead_length = arrowhead_length,
-    angle = angle,
-    lwd = lwd
-  )
+  for (row in 1:nrow(slice)) {
+    draw_gene(
+      gene_data,
+      y_levels[slice[row, "level"]],
+      arrowhead_length = arrowhead_length,
+      angle = angle,
+      lwd = lwd
+    )
+  }
 }
