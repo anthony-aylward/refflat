@@ -14,6 +14,8 @@ plot_refflat(chrom, start, end, rf = refflat_data, flatten = TRUE,
 
 \item{end}{integer. The end of the plotting interval.}
 
+\item{rf}{data frame. The refflat dataset.}
+
 \item{flatten}{logical. Flatten genes with multiple transcripts.}
 
 \item{arrowhead_length}{numeric. Length of the edges of the arrow head (in
@@ -24,7 +26,8 @@ arrow head.}
 
 \item{lwd}{numeric. Weight of lines.}
 
-\item{refflat}{data frame. The refflat dataset.}
+\item{buffer}{integer. Size of buffer (in bp) to impose around genes, in
+order to prevent merged edges.}
 }
 \description{
 Plot refflat data in an interval

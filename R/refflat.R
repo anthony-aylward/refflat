@@ -228,13 +228,15 @@ determine_levels <- function(rf, buffer = 0) {
 #' @param chrom integer. The chromosome of the plotting interval. (e.g. "chr16")
 #' @param start integer. The start of the plotting interval.
 #' @param end integer. The end of the plotting interval.
-#' @param refflat data frame. The refflat dataset.
+#' @param rf data frame. The refflat dataset.
 #' @param flatten logical. Flatten genes with multiple transcripts.
 #' @param arrowhead_length numeric. Length of the edges of the arrow head (in
 #'   inches).
 #' @param angle numeric. Angle from the shaft of the arrow to the edge of the
 #'   arrow head.
 #' @param lwd numeric. Weight of lines.
+#' @param buffer integer. Size of buffer (in bp) to impose around genes, in
+#'   order to prevent merged edges.
 #' @export
 plot_refflat <- function(
   chrom,
