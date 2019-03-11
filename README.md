@@ -18,4 +18,4 @@ library(refflat)
 plot_refflat("chr16", 535e5, 542e5)
 ```
 
-For more details, see the included [vignette](vignettes/example_plot.md)
+For more details, see the included [vignette](vignettes/example_plot.md).
