@@ -1,16 +1,3 @@
----
-title: "Example `refflat` Plot"
-author: "Anthony Aylward"
-date: "2019-03-11"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Example `refflat` plot}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-
-
 # Plotting genes with `refflat`
 
 _By Anthony Aylward, 2019-03-11_
