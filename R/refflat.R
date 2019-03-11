@@ -191,18 +191,18 @@ plot_gene <- function(
 #'
 #' Determine y-axis levels for each gene, in case any overlap one another
 #'
-#' @param refflat data frame. The input refflat data.
+#' @param rf data frame. The input refflat data.
 #' @return data frame. refflat data with a level column added.
 #' @export
-determine_levels <- function(refflat, buffer = 0) {
-  refflat <- refflat[order(refflat[["txStart"]]),]
+determine_levels <- function(rf, buffer = 0) {
+  rf <- rf[order(rf[["txStart"]]),]
   levels <- 1
-  ends <- c(refflat[1, "txEnd"])
+  ends <- c(rf[1, "txEnd"])
   level <- 1
-  for (row in 2:nrow(refflat)) {
+  for (row in 2:nrow(rf)) {
     broke_loop <- FALSE
     for (l in 1:max(levels)) {
-      if (ends[level] + buffer < refflat[row, "txStart"]) {
+      if (ends[level] + buffer < rf[row, "txStart"]) {
         level <- l
         broke_loop <- TRUE
         break
@@ -210,15 +210,15 @@ determine_levels <- function(refflat, buffer = 0) {
     }
     if (!broke_loop) {
       level <- max(levels) + 1
-      ends <- c(ends, refflat[row, "txEnd"])
+      ends <- c(ends, rf[row, "txEnd"])
     }
     levels <- c(levels, level)
-    if (ends[level] < refflat[row, "txEnd"]) {
-      ends[level] <- refflat[row, "txEnd"]
+    if (ends[level] < rf[row, "txEnd"]) {
+      ends[level] <- rf[row, "txEnd"]
     }
   }
-  refflat[["level"]] <- levels
-  refflat
+  rf[["level"]] <- levels
+  rf
 }
 
 #' Plot refflat
