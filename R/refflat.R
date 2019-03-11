@@ -52,15 +52,15 @@ fetch_refflat_data <- function(tmpdir = tempdir(), method = "auto") {
 #' @param chrom character. The chromosome of the slice.
 #' @param start integer. The start position of the slice.
 #' @param end integer. The end position of the slice.
-#' @param refflat data frame. The refflat dataset.
+#' @param rf data frame. The refflat dataset.
 #' @return A data frame representing the requested slice of the refflat data.
 #' @export
-slice_refflat <- function(chrom, start, end, refflat = refflat_data) {
-  refflat[
+slice_refflat <- function(chrom, start, end, rf = refflat_data) {
+  rf[
     (
-      refflat[["chrom"]] == chrom 
-      & refflat[["txStart"]] < end 
-      & refflat[["txEnd"]] > start
+      rf[["chrom"]] == chrom 
+      & rf[["txStart"]] < end 
+      & rf[["txEnd"]] > start
     ),
   ]
 }
@@ -72,17 +72,17 @@ slice_refflat <- function(chrom, start, end, refflat = refflat_data) {
 #' @param chrom character. The chromosome of the slice.
 #' @param start integer. The start position of the slice.
 #' @param end integer. The end position of the slice.
-#' @param refflat data frame. The refflat dataset.
+#' @param rf data frame. The refflat dataset.
 #' @return A data frame representing the requested slice of the refflat data.
 #' @export
-flatten_refflat <- function(refflat) {
+flatten_refflat <- function(rf) {
   as.data.frame(
     do.call(
       "rbind",
       lapply(
-        unique(refflat[["geneName"]]),
+        unique(rf[["geneName"]]),
         function(gene_name) {
-          gene_data <- refflat[refflat[["geneName"]] == gene_name,]
+          gene_data <- rf[rf[["geneName"]] == gene_name,]
           data.frame(
             geneName = gene_data[1, "geneName"],
             chrom = gene_data[1, "chrom"],
@@ -144,7 +144,7 @@ draw_gene <- function(
 #' Plot a gene
 #'
 #' @param name character. The name of the gene to plot.
-#' @param refflat data frame. The refflat dataset.
+#' @param rf data frame. The refflat dataset.
 #' @param y_coord numeric. Y-coordinate for the arrow.
 #' @param flatten logical. Flatten multiple transcripts if present.
 #' @param arrowhead_length numeric. Length of the edges of the arrow head (in
@@ -155,15 +155,15 @@ draw_gene <- function(
 #' @export
 plot_gene <- function(
   name,
-  refflat = refflat_data,
+  rf = refflat_data,
   y_coord = 0,
   flatten = TRUE,
   arrowhead_length = 0.125,
   angle = 15,
   lwd = 2
 ) {
-  gene_data <- refflat[
-    refflat[["geneName"]] == name | refflat[["name"]] == name,
+  gene_data <- rf[
+    rf[["geneName"]] == name | rf[["name"]] == name,
   ]
   if (flatten) gene_data <- flatten_refflat(gene_data)
   gene_length <- gene_data[["txEnd"]] - gene_data[["txStart"]]
@@ -240,14 +240,14 @@ plot_refflat <- function(
   chrom,
   start,
   end,
-  refflat = refflat_data,
+  rf = refflat_data,
   flatten = TRUE,
   arrowhead_length = 0.125,
   angle = 15,
   lwd = 2,
   buffer = 0
 ) {
-  slice <- slice_refflat(chrom, start, end)
+  slice <- slice_refflat(chrom, start, end, rf = rf)
   if (flatten) slice <- flatten_refflat(slice)
   slice <- determine_levels(slice, buffer = buffer)
   max_level <- max(slice[["level"]])
