@@ -4,10 +4,10 @@
 \alias{flatten_refflat}
 \title{Flatten refFlat data}
 \usage{
-flatten_refflat(refflat)
+flatten_refflat(rf)
 }
 \arguments{
-\item{refflat}{data frame. The refflat dataset.}
+\item{rf}{data frame. The refflat dataset.}
 
 \item{chrom}{character. The chromosome of the slice.}
 

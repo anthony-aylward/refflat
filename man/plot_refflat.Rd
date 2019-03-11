@@ -4,17 +4,15 @@
 \alias{plot_refflat}
 \title{Plot refflat}
 \usage{
-plot_refflat(chrom, start, end, refflat = refflat_data, flatten = TRUE,
+plot_refflat(chrom, start, end, rf = refflat_data, flatten = TRUE,
   arrowhead_length = 0.125, angle = 15, lwd = 2, buffer = 0)
 }
 \arguments{
-\item{chrom}{integer. The chromosome of the plotting interval.}
+\item{chrom}{integer. The chromosome of the plotting interval. (e.g. "chr16")}
 
 \item{start}{integer. The start of the plotting interval.}
 
 \item{end}{integer. The end of the plotting interval.}
-
-\item{refflat}{data frame. The refflat dataset.}
 
 \item{flatten}{logical. Flatten genes with multiple transcripts.}
 
@@ -25,6 +23,8 @@ inches).}
 arrow head.}
 
 \item{lwd}{numeric. Weight of lines.}
+
+\item{refflat}{data frame. The refflat dataset.}
 }
 \description{
 Plot refflat data in an interval

@@ -4,7 +4,7 @@
 \alias{slice_refflat}
 \title{Slice the refFlat dataset}
 \usage{
-slice_refflat(chrom, start, end, refflat = refflat_data)
+slice_refflat(chrom, start, end, rf = refflat_data)
 }
 \arguments{
 \item{chrom}{character. The chromosome of the slice.}
@@ -13,7 +13,7 @@ slice_refflat(chrom, start, end, refflat = refflat_data)
 
 \item{end}{integer. The end position of the slice.}
 
-\item{refflat}{data frame. The refflat dataset.}
+\item{rf}{data frame. The refflat dataset.}
 }
 \value{
 A data frame representing the requested slice of the refflat data.

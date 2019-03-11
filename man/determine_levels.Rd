@@ -4,10 +4,10 @@
 \alias{determine_levels}
 \title{Determine levels}
 \usage{
-determine_levels(refflat, buffer = 0)
+determine_levels(rf, buffer = 0)
 }
 \arguments{
-\item{refflat}{data frame. The input refflat data.}
+\item{rf}{data frame. The input refflat data.}
 }
 \value{
 data frame. refflat data with a level column added.

@@ -4,13 +4,13 @@
 \alias{plot_gene}
 \title{Plot a gene}
 \usage{
-plot_gene(name, refflat = refflat_data, y_coord = 0, flatten = TRUE,
+plot_gene(name, rf = refflat_data, y_coord = 0, flatten = TRUE,
   arrowhead_length = 0.125, angle = 15, lwd = 2)
 }
 \arguments{
 \item{name}{character. The name of the gene to plot.}
 
-\item{refflat}{data frame. The refflat dataset.}
+\item{rf}{data frame. The refflat dataset.}
 
 \item{y_coord}{numeric. Y-coordinate for the arrow.}
 

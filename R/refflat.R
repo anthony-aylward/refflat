@@ -225,7 +225,7 @@ determine_levels <- function(rf, buffer = 0) {
 #'
 #' Plot refflat data in an interval
 #'
-#' @param chrom integer. The chromosome of the plotting interval.
+#' @param chrom integer. The chromosome of the plotting interval. (e.g. "chr16")
 #' @param start integer. The start of the plotting interval.
 #' @param end integer. The end of the plotting interval.
 #' @param refflat data frame. The refflat dataset.
