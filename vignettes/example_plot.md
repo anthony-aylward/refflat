@@ -13,6 +13,8 @@ vignette: >
 
 # Plotting genes with `refflat`
 
+_By Anthony Aylward, 2019-03-11_
+
 This vignette will cover a simple example use case for `refflat`: plotting
 gene locations beneath GWAS association values, to provide context for the
 locus.
@@ -36,7 +38,7 @@ palette <- brewer.pal(3, "Paired")[1:2]
 P-values of GWAS association (type 2 diabetes risk) for SNPs in a region of
 roughly 1 Mb around the _FTO_ gene. See `help(t2d_fto)` for details.
 
-Now we can create the plot. We'll use `mfcol` to divide the plot into two
+Now we can create the plot. We'll use `par` to divide the plot into two
 sections, invoke a basic `plot` call to plot the GWAS association data,
 then invoke `plot_refflat` to plot the gene locations.
 
