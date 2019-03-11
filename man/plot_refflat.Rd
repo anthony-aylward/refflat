@@ -4,10 +4,12 @@
 \alias{plot_refflat}
 \title{Plot refflat}
 \usage{
-plot_refflat(start, end, refflat = refflat_data, flatten = TRUE,
-  arrowhead_length = 0.125, angle = 15, lwd = 2)
+plot_refflat(chrom, start, end, refflat = refflat_data, flatten = TRUE,
+  arrowhead_length = 0.125, angle = 15, lwd = 2, buffer = 0)
 }
 \arguments{
+\item{chrom}{integer. The chromosome of the plotting interval.}
+
 \item{start}{integer. The start of the plotting interval.}
 
 \item{end}{integer. The end of the plotting interval.}
@@ -23,8 +25,6 @@ inches).}
 arrow head.}
 
 \item{lwd}{numeric. Weight of lines.}
-
-\item{chrom}{integer. The chromosome of the plotting interval.}
 }
 \description{
 Plot refflat data in an interval

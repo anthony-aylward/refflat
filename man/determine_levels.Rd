@@ -4,7 +4,7 @@
 \alias{determine_levels}
 \title{Determine levels}
 \usage{
-determine_levels(refflat)
+determine_levels(refflat, buffer = 0)
 }
 \arguments{
 \item{refflat}{data frame. The input refflat data.}
