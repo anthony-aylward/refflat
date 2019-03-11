@@ -32,9 +32,9 @@ Get a couple of good colors using [RColorBrewer](https://cran.r-project.org/web/
 palette <- brewer.pal(3, "Paired")[1:2]
 ```
 
-`refflat` includes a data frame called `t2d_fto`, which contains P-values of
-GWAS association (type 2 diabetes risk) for SNPs in a region of rougly 1 Mb
-around the _FTO_ gene. See `help(t2d_fto)` for details.
+`refflat` includes an example data frame called `t2d_fto`, which contains
+P-values of GWAS association (type 2 diabetes risk) for SNPs in a region of
+roughly 1 Mb around the _FTO_ gene. See `help(t2d_fto)` for details.
 
 Now we can create the plot. We'll use `mfcol` to divide the plot into two
 sections, invoke a basic `plot` call to plot the GWAS association data,
