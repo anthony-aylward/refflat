@@ -3,7 +3,7 @@
 \docType{data}
 \name{t2d_fto}
 \alias{t2d_fto}
-\title{T2D FTO}
+\title{T2D signal at FTO locus}
 \format{A data frame with 3246 rows (SNPs) and 4 variables:
 \describe{
   \item{MARKER}{string describing a SNP}

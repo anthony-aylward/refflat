@@ -1,4 +1,4 @@
-#' T2D FTO
+#' T2D signal at FTO locus
 #'
 #' Example GWAS data featuring a T2D signal at the FTO locus.
 #'
