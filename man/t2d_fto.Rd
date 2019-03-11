@@ -3,7 +3,7 @@
 \docType{data}
 \name{t2d_fto}
 \alias{t2d_fto}
-\title{Example GWAS data}
+\title{T2D FTO}
 \format{A data frame with 3246 rows (SNPs) and 4 variables:
 \describe{
   \item{MARKER}{string describing a SNP}
@@ -18,6 +18,6 @@
 t2d_fto
 }
 \description{
-Featuring a T2D signal at the FTO locus
+Example GWAS data featuring a T2D signal at the FTO locus.
 }
 \keyword{datasets}

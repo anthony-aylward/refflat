@@ -32,6 +32,10 @@ Get a couple of good colors using [RColorBrewer](https://cran.r-project.org/web/
 palette <- brewer.pal(3, "Paired")[1:2]
 ```
 
+`refflat` includes a data frame called `t2d_fto`, which contains P-values of
+GWAS association (type 2 diabetes risk) for SNPs in a region of rougly 1 Mb
+around the _FTO_ gene. See `help(t2d_fto)` for details.
+
 Now we can create the plot. We'll use `mfcol` to divide the plot into two
 sections, invoke a basic `plot` call to plot the GWAS association data,
 then invoke `plot_refflat` to plot the gene locations.
@@ -55,9 +59,9 @@ plot_refflat("chr16", t2d_fto[1, "POS"], t2d_fto[nrow(t2d_fto), "POS"])
 ![plot of chunk without_buffer](figure/without_buffer-1.png)
 
 Note that the transcription start sites of _RPGRIP1L_ and _FTO_ are very close
-to one another. We can clarify things by imposing a 1kb buffer around genes,
+to one another. We can clarify things by imposing a 1 kb buffer around genes,
 requiring that they be drawn at different y-axis levels if their ends are less
-than 1kb apart.
+than 1 kb apart.
 
 
 ```r
