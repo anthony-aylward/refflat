@@ -35,9 +35,6 @@ plot_refflat("chr16", t2d_fto[1, "POS"], t2d_fto[nrow(t2d_fto), "POS"])
 ```
 
 ```{r with_buffer, fig.hold = TRUE, }
-library(RColorBrewer)
-library(refflat)
-palette <- brewer.pal(3, "Paired") 
 par(mar = c(2,4,0,0), mfcol = c(2, 1))
 plot(
   t2d_fto[["POS"]],
