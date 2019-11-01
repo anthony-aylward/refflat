@@ -196,18 +196,17 @@ plot_gene <- function(
 #' @export
 determine_levels <- function(rf, buffer = 0) {
   rf <- rf[order(rf[["txStart"]]),]
+  print(rf)
   levels <- 1
   ends <- c(rf[1, "txEnd"])
   level <- 1
   for (row in 2:nrow(rf)) {
     broke_loop <- FALSE
     for (l in 1:max(levels)) {
-      if (!is.na(rf[row, "txStart"])) {
-        if (ends[level] + buffer < rf[row, "txStart"]) {
-          level <- l
-          broke_loop <- TRUE
-          break
-        }
+      if (ends[level] + buffer < rf[row, "txStart"]) {
+        level <- l
+        broke_loop <- TRUE
+        break
       }
     }
     if (!broke_loop) {
@@ -215,10 +214,8 @@ determine_levels <- function(rf, buffer = 0) {
       ends <- c(ends, rf[row, "txEnd"])
     }
     levels <- c(levels, level)
-    if (!is.na(rf[row, "txEnd"])) {
-      if (ends[level] < rf[row, "txEnd"]) {
-        ends[level] <- rf[row, "txEnd"]
-      }
+    if (ends[level] < rf[row, "txEnd"]) {
+      ends[level] <- rf[row, "txEnd"]
     }
   }
   rf[["level"]] <- levels
