@@ -202,6 +202,8 @@ determine_levels <- function(rf, buffer = 0) {
   for (row in 2:nrow(rf)) {
     broke_loop <- FALSE
     for (l in 1:max(levels)) {
+      print(ends[level])
+      print(rf[row, "txStart"])
       if (ends[level] + buffer < rf[row, "txStart"]) {
         level <- l
         broke_loop <- TRUE
