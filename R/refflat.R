@@ -196,11 +196,10 @@ plot_gene <- function(
 #' @export
 determine_levels <- function(rf, buffer = 0) {
   rf <- rf[order(rf[["txStart"]]),]
-  print(rf)
   levels <- 1
   ends <- c(rf[1, "txEnd"])
   level <- 1
-  for (row in 2:nrow(rf)) {
+  for (row in 1:nrow(rf)) {
     broke_loop <- FALSE
     for (l in 1:max(levels)) {
       if (ends[level] + buffer < rf[row, "txStart"]) {
