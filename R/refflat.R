@@ -199,7 +199,7 @@ determine_levels <- function(rf, buffer = 0) {
   levels <- 1
   ends <- c(rf[1, "txEnd"])
   level <- 1
-  for (row in 1:nrow(rf)) {
+  for (row in min(nrow(rf), 2):nrow(rf)) {
     broke_loop <- FALSE
     for (l in 1:max(levels)) {
       if (ends[level] + buffer < rf[row, "txStart"]) {
