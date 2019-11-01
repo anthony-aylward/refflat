@@ -215,8 +215,10 @@ determine_levels <- function(rf, buffer = 0) {
       ends <- c(ends, rf[row, "txEnd"])
     }
     levels <- c(levels, level)
-    if (ends[level] < rf[row, "txEnd"]) {
-      ends[level] <- rf[row, "txEnd"]
+    if (!is.na(rf[row, "txEnd"])) {
+      if (ends[level] < rf[row, "txEnd"]) {
+        ends[level] <- rf[row, "txEnd"]
+      }
     }
   }
   rf[["level"]] <- levels
